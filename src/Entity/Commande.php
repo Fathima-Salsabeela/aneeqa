@@ -48,13 +48,10 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_enregistrement = null;
 
-    //  #[ORM\OneToMany(mappedBy: 'commande', targetEntity: User::class)]
-    // private Collection $user;
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    // public function __construct()
-    // {
-    //     $this->user = new ArrayCollection();
-    // }
 
    
     public function getId(): ?int
@@ -170,34 +167,18 @@ class Commande
         return $this;
     }
 
-    // /**
-    //  * @return Collection<int, User>
-    //  */
-    // public function getUser(): Collection
-    // {
-    //     return $this->user;
-    // }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-    // public function addUser(User $user): self
-    // {
-    //     if (!$this->user->contains($user)) {
-    //         $this->user->add($user);
-    //         $user->setCommande($this);
-    //     }
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // public function removeUser(User $user): self
-    // {
-    //     if ($this->user->removeElement($user)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($user->getCommande() === $this) {
-    //             $user->setCommande(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
+  
 
 }

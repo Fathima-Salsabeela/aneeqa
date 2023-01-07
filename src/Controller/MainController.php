@@ -7,6 +7,7 @@ use App\Entity\Avis;
 use App\Entity\Contact;
 use App\Entity\Commande;
 use App\Service\CartService;
+use App\Form\ContactFormType;
 use App\Repository\AvisRepository;
 use App\Repository\BebeRepository;
 use App\Repository\FemmeRepository;
@@ -107,7 +108,7 @@ class MainController extends AbstractController
             $commande = new Commande;
             $commande->setDateEnregistrement(new \DateTime)
                 ->setEtat("en cours de traitement")
-                // ->setUser($this->getUser())
+                ->setUser($this->getUser())
                 ->setMontant($item['product']->getPrix() * $item['quantity'])
                 ->setProduit($item['product'])
                 ->setQuantite($item['quantity']);

@@ -54,7 +54,7 @@ class RegistrationFormType extends AbstractType
         ->add('ville')
         ->add('codePostal')
         ->add('date_enregistrement')
-        ->add('commande')
+        
        
     ->add('roles', ChoiceType::class, [
           'choices'=> [
